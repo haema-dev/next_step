@@ -1,0 +1,34 @@
+# Server Port
+server:
+  port: 7070
+
+# Database
+spring:
+  datasource:
+    url:  jdbc:h2:./nextstep
+    driver-class-name: org.h2.Driver
+    username: nextstep
+    password: 0726
+  jpa:
+    #database-platform: org.hibernate.dialect.H2Dialect
+    #open-in-view: false
+    #hibernate 설정
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+
+# Log
+logging:
+  level:
+    org.hibernate.SQL: debug #Logger를 통해 출력
+    #org.hibernate.type: trace #파라미터 타입도 로그에 출력해줌! (외부라이브러리를 사용하는 방법도 있음)
+
+# Thymeleaf
+thymeleaf:
+  cache: false
+  enabled: true
+  prefix: classpath:/templates/
+  suffix: .html
