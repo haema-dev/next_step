@@ -52,7 +52,7 @@ implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 ### 3.2. Git 세팅
 `.gitignore`에 민감 정보가 담길 우려가 있는 `application.yml`을 등록한다. 반드시 src 경로부터 적어줘야한다.
 
-GitHub 의 Repository 에 프로젝트를 업로드 하기 위해 Git 을 사용해보자. 방법은 3가지가 있다. 설치 방법은 알아서 검색해보기 바란다. 
+GitHub 의 Repository 에 프로젝트를 업로드 하기 위해 Git 을 사용해보자. 방법은 3가지가 있다. 설치 방법은 알아서 검색해보기 바란다.
 1. SourceTree 사용
 2. IntelliJ Terminal 사용
 3. Git Bash 사용
