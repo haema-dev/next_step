@@ -32,9 +32,7 @@ https://yadon079.github.io/2021/spring%20boot/servlet-container
 ### 3.1. 개발환경 세팅
 test 폴더 아래에 `next_step.zip` 파일이 있다. Spring Boot 와 기본적인 라이브러리들만 Gradle 에 추가하여 프로젝트를 Run 시켰을 때에 `index.html` 화면이 정상적으로 뜨고, 오류가 나지 않을 정도로만 세팅해두었다.
 
-프로젝트를 통째로 내려받은 후, zip 폴더만 따로 압축을 풀어서 IntelliJ 에서 `build.gradle`을 실행시키자.
-
-책에 나와있는 Java 파일들도 그대로 넣어두었는데, 실습을 진행할 때에는 Java 파일만 날리고, 실습을 진행하면 된다. 우선 `build.gradle`에 아래의 설정을 추가해주어야한다.
+프로젝트를 통째로 내려받은 후, zip 폴더만 따로 압축을 풀어서 IntelliJ 에서 `build.gradle`을 실행시키자. 그리고 `build.gradle`에 아래의 설정을 추가해주자.
 
 ```thymeleafexpressions
 // Thymeleaf
