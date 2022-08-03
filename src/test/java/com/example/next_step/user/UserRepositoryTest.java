@@ -6,20 +6,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 @SpringBootTest
 public class UserRepositoryTest {
 
     @Autowired
     private UserRepository userRepository;
-
-    //@PersistenceContext
-    //private EntityManager entityManager;
 
     @Test
     @Commit
@@ -32,17 +25,11 @@ public class UserRepositoryTest {
         user.setEmail("email@gmail.com");
         user.setPassword("7070");
 
-        //entityManager.persist(user);
-
         //when
         Long savedUserId = userRepository.save(user);
         User findUser = userRepository.findOne(savedUserId);
 
-        //entityManager.flush();
-
         //then
         Assertions.assertThat(findUser.getId()).isEqualTo(user.getId());
-
     }
-
 }

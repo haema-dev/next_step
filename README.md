@@ -58,31 +58,31 @@ GitHub 의 Repository 에 프로젝트를 업로드 하기 위해 Git 을 사용
 3. Git Bash 사용
 
 ### 3.3. Database 세팅
-??? 는 각자 알맞게 적어넣으면 된다.
-#### 3.3.1. h2 사용
-`Wrong user name or password [28000-214]` 에러가 발생한다면 [여기](https://haema-dev.tistory.com/34)로.
+h2 는 db 를 제대로 못 잡는 에러가 빈번히 발생하여 MySQL 를 사용하기로 했다. 설치는 [여기](https://dev.mysql.com/downloads/installer/)로. `MySQL Server Only`를 선택해주면 된다.
+#### 3.3.1. application.yml
 ```yaml
+# Database
 spring:
   datasource:
-    url: ???
-    driver-class-name: org.h2.Driver
-    username: ???
-```
-#### 3.3.2. MySQL 사용
-```yaml
-spring:
-  datasource:
-    url: ???
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: ???
+    url: #본인 꺼 입력
+    username: #본인 꺼 입력
+    password: #본인 꺼 입력
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    open-in-view: false
+    # hibernate 설정
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
 ```
-#### 3.3.3. Oracle 사용
-```yaml
-spring:
-  datasource:
-    url: ???
-    driver-class-name: oracle.jdbc.driver.OracleDriver
-    username: ???
+#### 3.3.2. build.gradle
+```thymeleafexpressions
+implementation 'mysql:mysql-connector-java'
+runtimeOnly 'mysql:mysql-connector-java'
 ```
 
 ### 3.4. Thymeleaf Path 세팅
