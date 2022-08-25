@@ -3,6 +3,7 @@
 http://www.yes24.com/Product/Goods/31869154
 
 프로젝트 시작일 : 2022. 07. 26
+프로젝트 일시중지 : 2022. 08. 24
 
 ## 1. 프로젝트 목적
 회원가입, 로그인, 게시글 작성 등 게시판 기능을 전체적으로 한 번 진행함에 따라 기초를 쌓도록 한다.
@@ -13,9 +14,9 @@ http://www.yes24.com/Product/Goods/31869154
 Spring Boot 2.x
 Gradle
 Thymeleaf
-Jpa
 Junit 5
-h2
+Jpa
+MySQL
 ```
 Spring Boot 에는 Tomcat 이 내장 되어있고 이 Tomcat 에는 Web Server 를 생성해주도록 설정이 되어있기 때문에 책에 있는 `WebServer.java`를 만들지 않아도 된다.
 
@@ -25,8 +26,8 @@ Spring Boot 에는 Tomcat 이 내장 되어있고 이 Tomcat 에는 Web Server �
 
 포트 번호를 설정하고 싶을 경우, resource 폴더 아래에 있는 `application.yml`에 설정해주면 된다. `application.properties` 파일로 생성되어있을 경우, 확장자를 변경하여 주도록 하자.
 
-좀 더 상세하게 알고 싶으신 분들은 아래의 링크를 참고 바란다.
-https://yadon079.github.io/2021/spring%20boot/servlet-container
+좀 더 상세하게 알고 싶으신 분들은 [여기](https://yadon079.github.io/2021/spring%20boot/servlet-container) 를 참고 바란다.
+
 
 ## 3. 실습 방법 가이드
 ### 3.1. 개발환경 세팅
@@ -44,7 +45,8 @@ compileOnly 'org.projectlombok:lombok'
 annotationProcessor 'org.projectlombok:lombok'
 
 // Database
-implementation 'com.h2database:h2'
+implementation 'mysql:mysql-connector-java'
+runtimeOnly 'mysql:mysql-connector-java'
 // JPA
 implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 ```
@@ -58,7 +60,7 @@ GitHub 의 Repository 에 프로젝트를 업로드 하기 위해 Git 을 사용
 3. Git Bash 사용
 
 ### 3.3. Database 세팅
-h2 는 db 를 제대로 못 잡는 에러가 빈번히 발생하여 MySQL 를 사용하기로 했다. 설치는 [여기](https://dev.mysql.com/downloads/installer/)로. `MySQL Server Only`를 선택해주면 된다.
+h2 는 db 를 제대로 못 잡는 에러가 빈번히 발생하여 MySQL 를 사용하기로 했다. 설치는 [여기](https://dev.mysql.com/downloads/installer/) 로. `MySQL Server Only`를 선택해주면 된다.
 #### 3.3.1. application.yml
 ```yaml
 # Database
@@ -96,4 +98,4 @@ thymeleaf:
 ## 4. 마무리
 여기까지 성공적으로 마쳤다면 이제 시작할 준비가 끝난 거다. 책을 보면서 개발을 진행해보자.
 
-개발 과정에 대해서는 [Basic Board](https://haema-dev.tistory.com/category/Project/Basic%20Board)에 기록할 것이니, 혼자서 하기 버거우신 분들은 따라서 해보시길 권장합니다. 그래도 잘 안 되는 부분이 있으신 분들은 [질문](#)을 남겨주세요.
+개발 과정에 대해서는 [Basic Board](https://haema-dev.tistory.com/category/Project/Basic%20Board) 에 기록할 것이니, 혼자서 하기 버거우신 분들은 따라서 해보시길 권장합니다. 그래도 잘 안 되는 부분이 있으신 분들은 [질문(아직 링크 없음)](#) 을 남겨주세요.

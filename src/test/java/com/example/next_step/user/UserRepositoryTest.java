@@ -21,9 +21,10 @@ public class UserRepositoryTest {
 
         //given
         User user = new User();
-        user.setNickname("nextstep");
-        user.setEmail("email@gmail.com");
-        user.setPassword("7070");
+        user.setUser_id("nextstep");
+        user.setPassword("1234");
+        user.setNickname("넥스트스탭");
+        user.setEmail("이메일@gmail.com");
 
         //when
         Long savedUserId = userRepository.save(user);

@@ -1,24 +1,27 @@
 package com.example.next_step.user;
 
 import com.example.next_step.domain.User;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+@Slf4j
 @Repository
+@RequiredArgsConstructor
 public class UserRepository {
 
     //Spring Data JPA 를 사용하지 않고 순수 JPA 로 EntityManager 를 직접 가져와 사용.
     @PersistenceContext
     private EntityManager em;
 
-
-    @Transactional
     public Long save(User user){
         em.persist(user);
-        em.flush();
+
+        System.out.println(user.getUser_id());
+
         return user.getId();
     }
 
@@ -30,5 +33,8 @@ public class UserRepository {
         return em.find(User.class, id);
     }
 
+    public User findAll() {
 
+        return null;
+    }
 }
