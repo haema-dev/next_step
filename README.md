@@ -2,7 +2,7 @@
 ![](http://image.yes24.com/momo/TopCate935/MidCate008/93474058.jpg)  
 http://www.yes24.com/Product/Goods/31869154
 
-프로젝트 시작일 : 2022. 07. 26
+프로젝트 시작일 : 2022. 07. 26<br>
 프로젝트 일시중지 : 2022. 08. 24
 
 ## 1. 프로젝트 목적
