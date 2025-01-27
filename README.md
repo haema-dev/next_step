@@ -115,7 +115,7 @@ spring:
         format_sql: true
 ```
 #### 3.3.2. build.gradle
-```thymeleafexpressions
+```thymeleaf
 implementation 'mysql:mysql-connector-java'
 runtimeOnly 'mysql:mysql-connector-java'
 ```
