@@ -34,15 +34,15 @@ Tomcat 에는 Java Web Application 을 실행하는 Servlet Container 가 내장
 또한, Spring Framework 에서는 RequestHandler 를 따로 구현해서 index.html 을 매핑해주는 작업이 필요하다. 그러나 Spring Boot 에서는 resources 아래의 index.html 를 자동으로 인식하도록 내부적으로 구현이 되어있다.
 
 ```java
-    // Spring Boot 내부적으로 이런 과정이 자동화되어 있음
-    ServletWebServerFactory factory = new TomcatServletWebServerFactory();
-    WebServer webServer = factory.getWebServer(servletContext -> {
-        // 정적 리소스 매핑 (index.html 등)
-        servletContext.addResourceMapping("/", "classpath:/static/");
-        
-        // DispatcherServlet 등록
-        servletContext.addServlet("dispatcherServlet", new DispatcherServlet(applicationContext));
-    });
+// Spring Boot 내부적으로 이런 과정이 자동화되어 있음
+ServletWebServerFactory factory = new TomcatServletWebServerFactory();
+WebServer webServer = factory.getWebServer(servletContext -> {
+    // 정적 리소스 매핑 (index.html 등)
+    servletContext.addResourceMapping("/", "classpath:/static/");
+
+    // DispatcherServlet 등록
+    servletContext.addServlet("dispatcherServlet", new DispatcherServlet(applicationContext));
+});
 ```
 
 동작 과정을 한 번 살펴보자.
