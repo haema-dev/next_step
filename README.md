@@ -3,20 +3,23 @@
 http://www.yes24.com/Product/Goods/31869154
 
 프로젝트 시작일 : 2022. 07. 26<br>
-프로젝트 일시중지 : 2022. 08. 24
+프로젝트 일시중지 : 2022. 08. 24<br>
+프로젝트 재시작 : 2025. 02. 01<br>
+
 
 ## 1. 프로젝트 목적
 회원가입, 로그인, 게시글 작성 등 게시판 기능을 전체적으로 한 번 진행함에 따라 기초를 쌓도록 한다.
 
+
 ## 2. 프로젝트 설정
-책은 2016년도에 출판 되었기 때문에 2022년 기준으로 새로운 기술을 도입하여 진행하였다.
+책은 2016년도에 출판 되었기 때문에 2022년 기준으로 새로운 기술을 도입하여 진행하였다. 그러나 프로젝트를 잠시 일시중시 하는 사이에 3년이 지나버렸기 때문에 일부 버전을 변경해주었다.
 ```
-Spring Boot 2.x
-Gradle
-Thymeleaf
+Spring Boot 2.x  ->  3.x
+Gradle 7.x  ->  8.x
+Thymeleaf 3.1.x
 Junit 5
-Jpa
-MySQL
+Jpa 
+MySQL 8.x
 ```
 Spring Boot 에는 Tomcat 이 내장 되어있고 이 Tomcat 에는 Web Server 를 생성해주도록 설정이 되어있기 때문에 책에 있는 `WebServer.java`를 만들지 않아도 된다.
 
@@ -26,7 +29,32 @@ Spring Boot 에는 Tomcat 이 내장 되어있고 이 Tomcat 에는 Web Server �
 
 포트 번호를 설정하고 싶을 경우, resource 폴더 아래에 있는 `application.yml`에 설정해주면 된다. `application.properties` 파일로 생성되어있을 경우, 확장자를 변경하여 주도록 하자.
 
-좀 더 상세하게 알고 싶으신 분들은 [여기](https://yadon079.github.io/2021/spring%20boot/servlet-container) 를 참고 바란다.
+Tomcat 에는 Java Web Application 을 실행하는 Servlet Container 가 내장되어있다. 앞서 Spring boot 에는 Tomcat 이 내장되어 있다고 했다. 즉, Spring Boot 에도 Servlet Container 가 내장되어 있는 것이다. 단순히 Java Web Application 만을 구현한다면, Web Server 의 구현이 필요하지만 Spring Boot 에서는 그럴 필요가 없다.
+
+또한, Spring Framework 에서는 RequestHandler 를 따로 구현해서 index.html 을 매핑해주는 작업이 필요하다. 그러나 Spring Boot 에서는 resources 아래의 index.html 를 자동으로 인식하도록 내부적으로 구현이 되어있다.
+
+```javaclass
+// Spring Boot 내부적으로 이런 과정이 자동화되어 있음
+ServletWebServerFactory factory = new TomcatServletWebServerFactory();
+WebServer webServer = factory.getWebServer(servletContext -> {
+    // 정적 리소스 매핑 (index.html 등)
+    servletContext.addResourceMapping("/", "classpath:/static/");
+    
+    // DispatcherServlet 등록
+    servletContext.addServlet("dispatcherServlet", new DispatcherServlet(applicationContext));
+});
+```
+
+동작 과정을 한 번 살펴보자.
+
+1) Tomcat 시작
+2) ServletContext 생성
+3) DispatcherServlet 에 정적 리소스 경로 설정 (classpath:/static/, classpath:/public/ 등)
+4) ServletContext 를 DispatcherServlet 에 등록
+5) 정적 리소스 매핑 완료
+6) Web Server 시작
+
+이러한 자동화 된 설정으로 인해 Spring Boot 에서는 별도의 WebServer 구현이나 RequestHandler 구현 없이도 Web Application 구동이 가능하다.
 
 
 ## 3. 실습 방법 가이드
@@ -55,8 +83,8 @@ implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 `.gitignore`에 민감 정보가 담길 우려가 있는 `application.yml`을 등록한다. 반드시 src 경로부터 적어줘야한다.
 
 GitHub 의 Repository 에 프로젝트를 업로드 하기 위해 Git 을 사용해보자. 방법은 3가지가 있다. 설치 방법은 알아서 검색해보기 바란다.
-1. SourceTree 사용
-2. IntelliJ Terminal 사용
+1. SourceTree GUI 사용
+2. IntelliJ Terminal/GUI 사용
 3. Git Bash 사용
 
 ### 3.3. Database 세팅
@@ -95,7 +123,8 @@ thymeleaf:
   suffix: .html
 ```
 
+
 ## 4. 마무리
 여기까지 성공적으로 마쳤다면 이제 시작할 준비가 끝난 거다. 책을 보면서 개발을 진행해보자.
 
-개발 과정에 대해서는 [Basic Board](https://haema-dev.tistory.com/category/Project/Basic%20Board) 에 기록할 것이니, 혼자서 하기 버거우신 분들은 따라서 해보시길 권장합니다. 그래도 잘 안 되는 부분이 있으신 분들은 [질문(아직 링크 없음)](#) 을 남겨주세요.
+개발 과정에 대해서는 [Basic Board](https://haema-dev.tistory.com/category/Project/Basic%20Board) 에 기록할 것이니, 혼자서 하기 버거우신 분들은 따라서 해보시길 권장합니다.
