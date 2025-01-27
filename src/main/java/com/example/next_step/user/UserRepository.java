@@ -1,12 +1,12 @@
 package com.example.next_step.user;
 
 import com.example.next_step.domain.User;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 @Slf4j
 @Repository
@@ -20,7 +20,7 @@ public class UserRepository {
     public Long save(User user){
         em.persist(user);
 
-        System.out.println(user.getUser_id());
+        log.info(user.getUserId());
 
         return user.getId();
     }
@@ -31,10 +31,5 @@ public class UserRepository {
     // 메소드명이 findByUserId() 아닌 findOne 으로 바꿔준 이유도 위와 같다.
     public User findOne(Long id){
         return em.find(User.class, id);
-    }
-
-    public User findAll() {
-
-        return null;
     }
 }

@@ -1,12 +1,17 @@
 plugins {
-    id 'org.springframework.boot' version '2.7.2'
-    id 'io.spring.dependency-management' version '1.0.12.RELEASE'
     id 'java'
+    id 'org.springframework.boot' version '3.4.2'
+    id 'io.spring.dependency-management' version '1.1.7'
 }
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
 
 configurations {
     compileOnly {
@@ -21,7 +26,6 @@ repositories {
 dependencies {
     // Spring Boot 기본 설정
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
     // 타임리프
@@ -33,15 +37,14 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
 
     // Database
-    implementation 'mysql:mysql-connector-java'
-    runtimeOnly 'mysql:mysql-connector-java'
+    runtimeOnly 'com.mysql:mysql-connector-j'
+
     // JPA
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
-    // https://mavenlibs.com/maven/dependency/com.google.guava/guava
-    implementation 'com.google.guava:guava:31.1-jre'
     // test (Junit 5)
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 tasks.named('test') {

@@ -14,12 +14,14 @@ http://www.yes24.com/Product/Goods/31869154
 ## 2. 프로젝트 설정
 책은 2016년도에 출판 되었기 때문에 2022년 기준으로 새로운 기술을 도입하여 진행하였다. 그러나 프로젝트를 잠시 일시중시 하는 사이에 3년이 지나버렸기 때문에 일부 버전을 변경해주었다.
 ```
-Spring Boot 2.x  ->  3.x
-Gradle 7.x  ->  8.x
-Thymeleaf 3.1.x
+Java 11  →  Java 17
+Spring Boot 2.7.2  →  Spring Boot 3.4.2 (Spring Boot 3.x 버전은 Java 17 이상 호환)
+Dependency Management 1.0.12.RELEASE  →  Dependency Management 1.1.7
+Gradle 7.4  →  Gradle 8.11.1 (Spring Boot 3.4.2 버전은 7.6.4 이상)
+Thymeleaf
 Junit 5
-Jpa 
-MySQL 8.x
+Jpa
+MySQL
 ```
 Spring Boot 에는 Tomcat 이 내장 되어있고 이 Tomcat 에는 Web Server 를 생성해주도록 설정이 되어있기 때문에 책에 있는 `WebServer.java`를 만들지 않아도 된다.
 
@@ -73,8 +75,8 @@ compileOnly 'org.projectlombok:lombok'
 annotationProcessor 'org.projectlombok:lombok'
 
 // Database
-implementation 'mysql:mysql-connector-java'
-runtimeOnly 'mysql:mysql-connector-java'
+runtimeOnly 'com.mysql:mysql-connector-j'
+
 // JPA
 implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 ```
